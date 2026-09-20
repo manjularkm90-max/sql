@@ -1,0 +1,3 @@
+SELECT *
+FROM Employee
+WHERE department = 'IT';
