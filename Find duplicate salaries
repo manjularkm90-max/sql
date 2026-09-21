@@ -1,0 +1,4 @@
+SELECT salary, COUNT(*) AS count
+FROM Employee
+GROUP BY salary
+HAVING COUNT(*) > 1;
