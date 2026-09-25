@@ -1,0 +1,5 @@
+SELECT department_id,
+       COUNT(*) AS employee_count
+FROM Employee
+GROUP BY department_id
+HAVING COUNT(*) > 5;
