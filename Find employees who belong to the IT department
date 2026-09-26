@@ -1,0 +1,5 @@
+SELECT e.*
+FROM Employee e
+JOIN Department d
+ON e.department_id = d.id
+WHERE d.department_name = 'IT';
