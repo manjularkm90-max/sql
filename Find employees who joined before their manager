@@ -1,0 +1,8 @@
+SELECT e.emp_name AS employee,
+       e.joining_date AS employee_joining,
+       m.emp_name AS manager,
+       m.joining_date AS manager_joining
+FROM Employee e
+JOIN Employee m
+    ON e.manager_id = m.emp_id
+WHERE e.joining_date < m.joining_date;
