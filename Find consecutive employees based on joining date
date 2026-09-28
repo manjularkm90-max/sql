@@ -1,0 +1,11 @@
+SELECT emp_id,
+       emp_name,
+       joining_date
+FROM (
+    SELECT e.*,
+           LAG(joining_date) OVER (
+               ORDER BY joining_date
+           ) AS previous_date
+    FROM Employee e
+) x
+WHERE DATEDIFF(joining_date, previous_date) = 1;
