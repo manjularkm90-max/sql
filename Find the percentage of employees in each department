@@ -1,0 +1,9 @@
+SELECT dept_id,
+       COUNT(*) AS employee_count,
+       ROUND(
+           COUNT(*) * 100.0 /
+           SUM(COUNT(*)) OVER (),
+           2
+       ) AS percentage
+FROM Employee
+GROUP BY dept_id;
