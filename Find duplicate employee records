@@ -1,0 +1,4 @@
+SELECT emp_name, salary, dept_id, COUNT(*) AS cnt
+FROM Employee
+GROUP BY emp_name, salary, dept_id
+HAVING COUNT(*) > 1;
