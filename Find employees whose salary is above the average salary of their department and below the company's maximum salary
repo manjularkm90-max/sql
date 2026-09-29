@@ -1,0 +1,11 @@
+SELECT *
+FROM Employee e
+WHERE salary > (
+    SELECT AVG(e2.salary)
+    FROM Employee e2
+    WHERE e2.dept_id = e.dept_id
+)
+AND salary < (
+    SELECT MAX(salary)
+    FROM Employee
+);
