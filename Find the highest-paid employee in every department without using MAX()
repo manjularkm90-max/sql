@@ -1,0 +1,8 @@
+SELECT e.*
+FROM Employee e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Employee e2
+    WHERE e2.dept_id = e.dept_id
+      AND e2.salary > e.salary
+);
