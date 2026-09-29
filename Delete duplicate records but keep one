@@ -1,0 +1,14 @@
+WITH duplicates AS (
+    SELECT emp_id,
+           ROW_NUMBER() OVER (
+               PARTITION BY emp_name, salary, dept_id
+               ORDER BY emp_id
+           ) AS rn
+    FROM Employee
+)
+DELETE FROM Employee
+WHERE emp_id IN (
+    SELECT emp_id
+    FROM duplicates
+    WHERE rn > 1
+);
