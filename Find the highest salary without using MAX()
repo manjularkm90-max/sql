@@ -1,0 +1,4 @@
+SELECT salary
+FROM Employees
+ORDER BY salary DESC
+LIMIT 1;
