@@ -1,0 +1,7 @@
+SELECT DISTINCT salary
+FROM Employees e1
+WHERE 1 = (
+    SELECT COUNT(DISTINCT salary)
+    FROM Employees e2
+    WHERE e2.salary > e1.salary
+);
