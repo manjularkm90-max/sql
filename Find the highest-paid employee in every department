@@ -1,0 +1,10 @@
+SELECT emp_id, emp_name, department, salary
+FROM (
+    SELECT e.*,
+           RANK() OVER (
+               PARTITION BY department
+               ORDER BY salary DESC
+           ) AS rnk
+    FROM employees e
+) x
+WHERE rnk = 1;
