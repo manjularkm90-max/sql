@@ -1,0 +1,7 @@
+SELECT emp_name, department, salary
+FROM employees
+WHERE salary > ANY (
+    SELECT salary
+    FROM employees
+    WHERE department = 'IT'
+);
