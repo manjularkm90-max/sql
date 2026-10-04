@@ -1,0 +1,3 @@
+SELECT emp_name, department
+FROM employees
+WHERE manager_id IS NULL;
