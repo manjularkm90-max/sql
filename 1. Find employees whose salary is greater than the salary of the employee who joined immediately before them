@@ -1,0 +1,7 @@
+SELECT *
+FROM (
+    SELECT e.*,
+           LAG(salary) OVER (ORDER BY joining_date) AS previous_salary
+    FROM employees e
+) x
+WHERE salary > previous_salary;
