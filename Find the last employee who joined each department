@@ -1,0 +1,10 @@
+SELECT *
+FROM (
+    SELECT e.*,
+           ROW_NUMBER() OVER (
+               PARTITION BY department
+               ORDER BY joining_date DESC
+           ) AS rn
+    FROM employees e
+) x
+WHERE rn = 1;
