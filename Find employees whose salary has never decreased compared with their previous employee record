@@ -1,0 +1,11 @@
+SELECT *
+FROM (
+    SELECT e.*,
+           LAG(salary) OVER (
+               PARTITION BY emp_id
+               ORDER BY joining_date
+           ) AS previous_salary
+    FROM employees e
+) x
+WHERE previous_salary IS NULL
+   OR salary >= previous_salary;
