@@ -1,0 +1,28 @@
+WITH x AS (
+    SELECT emp_id,
+           joining_date,
+           salary,
+           LAG(salary) OVER (
+               PARTITION BY emp_id
+               ORDER BY joining_date
+           ) AS prev_salary
+    FROM employees
+),
+y AS (
+    SELECT *,
+           SUM(
+               CASE
+                   WHEN prev_salary IS NULL OR salary <= prev_salary
+                   THEN 1
+                   ELSE 0
+               END
+           ) OVER (
+               PARTITION BY emp_id
+               ORDER BY joining_date
+           ) AS grp
+    FROM x
+)
+SELECT emp_id, grp, COUNT(*) AS streak
+FROM y
+GROUP BY emp_id, grp
+ORDER BY streak DESC;
